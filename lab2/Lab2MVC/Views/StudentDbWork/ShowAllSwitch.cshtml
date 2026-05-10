@@ -1,0 +1,55 @@
+﻿@model List<Lab2MVC.Models.StudentDbWork>
+
+@using Lab2MVC.Models
+@using Lab2MVC.Infrastructure
+
+@helper RenderWorksTableInternal(List<StudentDbWork> works, string title)
+{
+    <h2>@title</h2>
+
+    if (works.Count == 0)
+    {
+        <p>Пока нет введённых данных.</p>
+    }
+    else
+    {
+        <table border="1">
+            <tr>
+                <th>Идентификатор</th>
+                <th>ФИО студента</th>
+                <th>Группа</th>
+                <th>Тема проекта</th>
+                <th>Дата сдачи</th>
+                <th>Оценка</th>
+                <th>Есть защита</th>
+            </tr>
+
+            @for (int i = 0; i < works.Count; i++)
+            {
+                <tr>
+                    <td>@works[i].Id</td>
+                    <td>@works[i].StudentName</td>
+                    <td>@works[i].GroupName</td>
+                    <td>@works[i].ProjectTopic</td>
+                    <td>@works[i].SubmissionDate</td>
+                    <td>@works[i].Score</td>
+                    <td>@works[i].IsDefended</td>
+                </tr>
+            }
+        </table>
+    }
+}
+
+@{
+    ViewBag.Title = "Выбор helper через ViewData";
+    bool useInternal = (bool)ViewData["UseInternalHelper"];
+}
+
+@if (useInternal)
+{
+    @RenderWorksTableInternal(Model, "Все работы")
+}
+else
+{
+    @Html.RenderWorksTable(Model, "Все работы")
+}

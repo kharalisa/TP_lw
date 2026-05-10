@@ -1,0 +1,16 @@
+﻿@model Lab2MVC.Models.StudentDbWork
+
+@{
+    ViewBag.Title = "Добавление";
+}
+
+<h2>Добавление работы</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelForModel()
+    @Html.EditorForModel()
+
+    <br />
+    <input type="submit" value="Сохранить" />
+}

@@ -1,0 +1,37 @@
+﻿@model Lab2MVC.Models.StudentDbWork
+
+@{
+    ViewBag.Title = "Просмотр";
+}
+
+<h2>Просмотр работы</h2>
+
+<p>
+    @Html.LabelFor(m => m.StudentName)
+    @Html.DisplayFor(m => m.StudentName)
+</p>
+
+<p>
+    @Html.LabelFor(m => m.GroupName)
+    @Html.DisplayFor(m => m.GroupName)
+</p>
+
+<p>
+    @Html.LabelFor(m => m.ProjectTopic)
+    @Html.DisplayFor(m => m.ProjectTopic)
+</p>
+
+<p>
+    @Html.LabelFor(m => m.SubmissionDate)
+    @Html.DisplayFor(m => m.SubmissionDate)
+</p>
+
+<p>
+    @Html.LabelFor(m => m.Score)
+    @Html.DisplayFor(m => m.Score)
+</p>
+
+<p>
+    @Html.LabelFor(m => m.IsDefended)
+    @Html.DisplayFor(m => m.IsDefended)
+</p>

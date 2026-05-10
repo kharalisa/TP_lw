@@ -1,0 +1,9 @@
+﻿@model List<Lab2MVC.Models.StudentDbWork>
+
+@using Lab2MVC.Infrastructure
+
+@{
+    ViewBag.Title = "Все работы - внешний helper";
+}
+
+@Html.RenderWorksTable(Model, "Все работы")
