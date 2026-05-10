@@ -1,0 +1,80 @@
+﻿@using System.Web.Mvc
+@model MvcCalculator.Models.CalculatorModel
+
+@{
+    ViewBag.Title = "Калькулятор";
+}
+
+<h2>Калькулятор</h2>
+
+@* ============================================================
+    ЧАСТЬ 1 ПУНКТ 4: Использование Html.BeginForm
+    ============================================================ *@
+
+@using (Html.BeginForm("Index", "Calculator", FormMethod.Post))
+{
+    // ЧАСТЬ 3 ПУНКТ 2
+    if (!ViewData.ModelState.IsValid)
+    {
+        @Html.ValidationSummary(false, "", new { @class = "validation-summary-errors" })
+    }
+
+    <div>
+        @Html.LabelFor(m => m.Operand1)
+        @Html.TextBoxFor(m => m.Operand1, new { @class = "my-text-box" })
+
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(m => m.Operand2)
+        @Html.TextBoxFor(m => m.Operand2, new { @class = "my-text-box" })
+
+    </div>
+
+    <br />
+
+    @* ========================================================
+        ЧАСТЬ 1 ПУНКТ 4: Выбор операции - Вариант Б (DropDownList)
+        ======================================================== *@
+    <div>
+        @Html.LabelFor(m => m.Operation)
+        @Html.DropDownListFor(
+            m => m.Operation,
+            (IEnumerable<SelectListItem>)ViewBag.OperationList,
+            "Выберите операцию"
+        )
+    </div>
+
+    <br />
+    //ЧАСТЬ 2 ПУНКТ 4, добавили кнопки name
+    <div>
+        <input type="submit" name="buttonAction" value="Вычислить" class="my-button" />
+        <input type="submit" name="buttonAction" value="Очистить" class="my-button" />
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(m => m.Result)
+        @Html.TextBoxFor(m => m.Result, new { @class = "my-text-box", @readonly = "readonly" })
+    </div>
+    @Html.ActionLink("Показать операцию", "Details", "Calculator")//ЧАСТЬ 4 ПУНКТ 1
+
+    // ЧАСТЬ 2 ПУНКТ 2
+    if (Model.Result != 0)
+    {
+        if (Model.Result == ViewBag.ExpectedValue)
+        {
+            <p style="color:green">Поздравляем! Результат совпал с ожидаемым (@ViewBag.ExpectedValue).</p>
+        }
+        else
+        {
+            <p style="color:orange">Результат (@Model.Result) не совпал с ожидаемым (@ViewBag.ExpectedValue).</p>
+        }
+    }
+    <br />
+
+
+}

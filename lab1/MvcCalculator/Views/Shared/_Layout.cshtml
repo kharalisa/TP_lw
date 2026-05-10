@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+    
+    <hr />
+
+    @RenderBody()
+
+    <hr />
+    <p>Подвал сайта</p>
+
+    @RenderSection("MySection", required: false)
+
+</body>
+</html>
